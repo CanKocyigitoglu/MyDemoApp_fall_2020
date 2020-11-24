@@ -1,0 +1,1 @@
+This project is about finding an integer inside of an ArrayList.

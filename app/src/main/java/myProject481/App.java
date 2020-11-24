@@ -3,15 +3,17 @@
  */
 package myProject481;
 
-  import static spark.Spark.get;
-  import static spark.Spark.port;
-  import static spark.Spark.post;
+import static spark.Spark.get;
+import static spark.Spark.port;
+import static spark.Spark.post;
 
-  import java.util.ArrayList;
-  import java.util.HashMap;
-  import java.util.Map;
+import java.lang.System.Logger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.LogManager;
 
-  import spark.ModelAndView;
+import spark.ModelAndView;
   import spark.template.mustache.MustacheTemplateEngine;
 
   public class App
@@ -32,6 +34,12 @@ package myProject481;
 
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
+        Logger logger = LogManager.getLogger(App.class);
+
+        int port = Integer.parseInt(System.getenv("PORT"));
+        port(port);
+        logger.error("Current port number:" + port);
+
 
         get("/", (req, res) -> "Hello, World");
 

@@ -23,14 +23,23 @@ import spark.ModelAndView;
         return "Hello world.";
     }
 
-    public static boolean search(ArrayList<Integer> array, int e) {
+    public static boolean search(ArrayList<Integer> array1, ArrayList<Integer> array2, int e) {
       System.out.println("inside search");
-      if (array == null) return false;
+      if (array1 == null || array2 == null) return false;
 
-      for (int elt : array) {
-        if (elt == e) return true;
+      boolean isContain1 = false;
+      boolean isContain2 = false;
+      for (int elt : array1) {
+        if (elt == e){
+          isContain1 = true;
+        }
       }
-      return false;
+      for (int elt : array2) {
+        if (elt == e){
+          isContain2 = true;
+        }
+      }
+      return isContain1 && isContain2;
     }
 
     public static void main(String[] args) {
@@ -75,12 +84,16 @@ import spark.ModelAndView;
           String input2 = req.queryParams("input2").replaceAll("\\s","");
           int input2AsInt = Integer.parseInt(input2);
 
-          boolean result1 = App.search(inputList, input2AsInt);
-          boolean result2 = App.search(inputList3, input2AsInt);
+          boolean result = App.search(inputList,inputList3, input2AsInt);
 
-          Map<String, Boolean> map = new HashMap<String, Boolean>();
-          map.put("result1", result1);
-          map.put("result2", result2);
+          Map<String, String> map = new HashMap<String, String>();
+          if(result){
+            map.put("has", "have");
+            map.put("element", input2);
+          }else{
+            map.put("has", "do not have");
+            map.put("element", input2);  
+          }  
           return new ModelAndView(map, "compute.mustache");
         }, new MustacheTemplateEngine());
 

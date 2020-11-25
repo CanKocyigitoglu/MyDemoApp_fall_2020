@@ -12,25 +12,52 @@ import java.util.Arrays;
 class AppTest {
     @Test
     public void testFound() {
-       ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-       assertTrue(App.search(array, 4));
+       ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+       ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(4, 5, 6, 7));
+       assertTrue(App.search(array1, array2, 4));
      }
  
      @Test
      public void testNotFound() {
-       ArrayList<Integer> array = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-       assertFalse(App.search(array, 5));
+       ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+       ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(4, 5, 6, 7));
+       assertFalse(App.search(array1,array2, 5));
      }
  
      @Test
-     public void testEmptyArray() {
-       ArrayList<Integer> array = new ArrayList<>();
-       assertFalse(App.search(array, 1));
+     public void testEmptyArray1() {
+       ArrayList<Integer> array1 = new ArrayList<>();
+       ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(4, 5, 6, 7));
+       assertFalse(App.search(array1,array2, 1));
      }
+     @Test
+     public void testEmptyArray2() {
+      ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+      ArrayList<Integer> array2 = new ArrayList<>();
+      assertFalse(App.search(array1,array2, 1));
+    }
+    @Test
+    public void testEmptyArrayBoth() {
+      ArrayList<Integer> array1 = new ArrayList<>();
+      ArrayList<Integer> array2 = new ArrayList<>();
+      assertFalse(App.search(array1,array2, 1));
+    }
  
      @Test
-     public void testNull() {
-       assertFalse(App.search(null, 1));
+     public void testNull1() {
+      ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(4, 5, 6, 7));
+       assertFalse(App.search(null,array2, 1));
+     }
+
+     @Test
+     public void testNull2() {
+      ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+       assertFalse(App.search(array1,null, 1));
+     }
+
+     @Test
+     public void testNullBoth() {
+       assertFalse(App.search(null,null, 1));
      }
  
 }

@@ -63,7 +63,12 @@ import spark.ModelAndView;
           String input2 = req.queryParams("input2").replaceAll("\\s","");
           int input2AsInt = Integer.parseInt(input2);
 
-          boolean result = App.search(inputList, input2AsInt);
+          String input3 = req.queryParams("input3").replaceAll("\\s","");
+          int input3AsInt = Integer.parseInt(input3);
+
+          int sum = input2AsInt + input3AsInt;
+
+          boolean result = App.search(inputList, sum);
 
           Map<String, Boolean> map = new HashMap<String, Boolean>();
           map.put("result", result);

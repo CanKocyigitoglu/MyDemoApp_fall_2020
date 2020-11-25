@@ -59,19 +59,28 @@ import spark.ModelAndView;
           sc1.close();
           System.out.println(inputList);
 
+          String input3 = req.queryParams("input3");
+          java.util.Scanner sc3 = new java.util.Scanner(input3);
+          sc1.useDelimiter("[;\r\n]+");
+          java.util.ArrayList<Integer> inputList3 = new java.util.ArrayList<>();
+          while (sc3.hasNext())
+          {
+            int value = Integer.parseInt(sc3.next().replaceAll("\\s",""));
+            inputList3.add(value);
+          }
+          sc3.close();
+          System.out.println(inputList3);
+
 
           String input2 = req.queryParams("input2").replaceAll("\\s","");
           int input2AsInt = Integer.parseInt(input2);
 
-          String input3 = req.queryParams("input3").replaceAll("\\s","");
-          int input3AsInt = Integer.parseInt(input3);
-
-          int sum = input2AsInt + input3AsInt;
-
-          boolean result = App.search(inputList, sum);
+          boolean result1 = App.search(inputList, input2AsInt);
+          boolean result2 = App.search(inputList3, input2AsInt);
 
           Map<String, Boolean> map = new HashMap<String, Boolean>();
-          map.put("result", result);
+          map.put("result1", result1);
+          map.put("result2", result2);
           return new ModelAndView(map, "compute.mustache");
         }, new MustacheTemplateEngine());
 

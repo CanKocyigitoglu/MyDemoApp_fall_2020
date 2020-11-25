@@ -1,16 +1,17 @@
 <title>My application deployed automatically</title>
   <h1>Hello, World!</h1>
   <p>In first form put a list of integer</p>
-  <p>In second and third forms put one line integer</p>
-  <p>program will take sum of second and third</p>
-  <p>and check that if the list contains the summation</p>
-    Result is {{result}}
+  <p>In second form also put a list of integer</p>
+  <p>program will check that if both lists</p>
+  <p>contains the integer given in third form</p>
+    Result is {{result1}}
+    Result is {{result2}}
 
 
   <form action="compute" method="post">
         <textarea name="input1" rows="10" cols="30"></textarea>
-        <textarea name="input2" rows="10" cols="30"></textarea>
         <textarea name="input3" rows="10" cols="30"></textarea>
+        <textarea name="input2" rows="1" cols="30"></textarea>
         <br>
         <input type="submit">
   </form>
